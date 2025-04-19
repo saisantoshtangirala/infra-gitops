@@ -25,11 +25,11 @@ resource "aws_ecs_task_definition" "web_task" {
       environment = [
         {
           name  = "DB_USER"
-          value = jsondecode(data.aws_secretsmanager_secret_version.db.secret_string)["username"]
+          value = jsondecode(data.aws_secretsmanager_secret_version.db_credentials.secret_string)["username"]
         },
         {
           name  = "DB_PASS"
-          value = jsondecode(data.aws_secretsmanager_secret_version.db.secret_string)["password"]
+          value = jsondecode(data.aws_secretsmanager_secret_version.db_credentials.secret_string)["password"]
         }
       ]
     }
